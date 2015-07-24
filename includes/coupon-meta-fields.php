@@ -10,7 +10,10 @@
 	{
 		global $post;
 
-		$user_ids = implode( ',', array_filter( array_map( 'intval', explode( ',', $_POST['wcum_users_id'] ) ) ) );
+		$posted_ids = $_POST[ 'wcum_users_id' ];
+		$posted_ids = apply_filters( 'wcum_pre_save_users_ids', $posted_ids );
+
+		$user_ids = implode( ',', array_filter( array_map( 'intval', explode( ',', $posted_ids ) ) ) );
 		update_post_meta( $post->ID, 'wcum_users_id', $user_ids );
 	}
 
@@ -43,7 +46,6 @@
 							$user = get_userdata( $user_id );
 							if ( $user !== false )
 							{
-								//$json_ids[ $user_id ] = $user->ID;
 								$json_ids[ $user_id ] = esc_html( $user->display_name ) . ' (#' . absint( $user->ID ) . ' &ndash; ' . esc_html( $user->user_email );
 							}
 						}
