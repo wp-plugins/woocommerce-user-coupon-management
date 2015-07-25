@@ -8,6 +8,7 @@
  * Author: Popov Argir
  * Author URI: 
  * License: GPL2
+ * Tested up to: 4.2
  *
  * @package WooCommerce Coupon User Management
  * @category Core
